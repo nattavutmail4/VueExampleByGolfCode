@@ -1,32 +1,65 @@
-
 <template>
-  <div class="container-fulid my-3">
-    <div class="row">
-      <div class="col-sm-12">
-      <h1>&nbsp;Example Components</h1><hr>
+  <div class="container my-3">
+    <ListGroup :list="['a', 'b', 'c']"></ListGroup>
+    <hr>
+    <ListGroup :list="numbers" enable-edit></ListGroup>
+    <button type="button" class="btn btn-primary mt-2" @click="numbers.push(numbers.length)">Add</button>
+    <h1>Register</h1>
+    <InputPassword @submit-form="onRegister">
+      <div class="mb-3">
+        <label class="form-label">Username:</label>
+        <input v-model="username" class="form-control" type="text" required>
       </div>
-    </div>
-    <section class="container my-3">
-      <div class="row">
-        <div class="col-sm-6">
-          <ListGroup :list="numbers"></ListGroup>
-          <button class="btn btn-primary" type="button" @click="numbers.push(number.length)">Add</button>
-          <ListGroup :list="[1,2,3,4]"></ListGroup>
+    </InputPassword>
 
-        </div>
-        <div class="col-sm-6">&nbsp;</div>
+    <hr>
+
+    <h1>Change password</h1>
+    <InputPassword @submit-form="onChangePassword">
+      <div class="mb-3">
+        <label class="form-label">Old Password:</label>
+        <input v-model="oldPassword" class="form-control" type="password" required>
       </div>
-    </section>
+    </InputPassword>
+    <hr>
   </div>
 </template>
+
 <script>
-  import ListGroup from "./components/ListGroup.vue"  //import commponent
-  export default {
-     components:{
-       ListGroup
-     },
-     data:()=>({
-        numbers:[]
-     })
+import ListGroup from './components/ListGroup.vue'
+import InputPassword from './components/InputPassword.vue'
+
+export default {
+  components: {
+    ListGroup,
+    InputPassword,
+},
+  data: () => ({
+    numbers: [],
+    username:"",
+    oldPassword:""
+  }),
+  methods: {
+    onRegister(password){
+        alert(JSON.stringify({
+            username:this.username,
+            password
+        }))
+    },
+    onChangePassword(password) {
+        alert(JSON.stringify({
+          oldPassword:this.oldPassword,
+          password
+        }))
+    }
+  },
+  mounted() {
   }
+}
 </script>
+
+<style scoped>
+h1 {
+  color: red;
+}
+</style>
