@@ -12,7 +12,7 @@
 <template>
   <div class="container">
      <div class="row">
-        <div class="col-sm-4 card my-5">
+        <div class="col-sm-4 card my-5 mx-auto">
           <div class="card-body">
             <h2>Text Input</h2><hr>
             <div class="mb-3">
