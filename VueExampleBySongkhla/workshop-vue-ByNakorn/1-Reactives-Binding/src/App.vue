@@ -71,6 +71,11 @@ const message = ref('Hello from setup')
     <label for="fontExtra">Extra class</label>
     <input id="fontExtra" v-model="fontClass.extra" type="text">
   </div><hr>
+  <ul>
+    <h1>dd</h1>
+    <li v-if="items.length" v-for="(item, index) in items"> {{ parentMessage }}  - {{ index+1 }} - {{item.message}}</li>
+    <li v-else>-</li>
+  </ul>
 </template>
 
 <script>
@@ -96,6 +101,11 @@ export default {
       lineThrough: false,
       extra: ''
     },
+    parentMessage: 'Parent',
+    items: [
+      { id:1,message: 'Foo' },
+      { id:2,message: 'Bar' }
+    ]
   })
   // setup() {
   //   const message = ref('HELLO FROM INSIDE SETUP')
